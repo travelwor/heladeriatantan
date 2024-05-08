@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+	 <script src="file:///C|/Users/hp/Desktop/Untitled-13.php"></script>
+    <title>Pedido en L�nea</title>
+	
+    <style>
+        .producto {
+            display: inline-block;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .producto img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .formulario {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .formulario label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .formulario input,
+        .formulario textarea,
+        .formulario select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .formulario input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .formulario input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">Has tu pedido </h1>
+
+    <div class="productos">
+        <div class="producto">
+          <img src="imagenes/ddd.jpg" alt="HELADO CREMA" width="420" height="381">
+          <p>HELADO CREMA - $1.50</p>
+            <input type="radio" id="producto1" name="producto" value="vainilla">
+            <label for="producto1">Seleccionar</label>
+      </div>
+        
+        <div class="producto">
+            <img src="imagenes/ff.jpg" alt="HELADO DE LECHE" width="421" height="381">
+            <p>HELADO DE LECHE - $2.75</p>
+            <input type="radio" id="producto2" name="producto" value="chocolate">
+            <label for="producto2">Seleccionar</label>
+      </div>
+        
+        <div class="producto">
+            <img src="imagenes/batidos_con_helado_.jpg" alt="batido de helado " width="301" height="251">
+            <p>HATIDO DE HELADO - $3.00</p>
+            <input type="radio" id="producto3" name="producto" value="fresa">
+            <label for="producto3">Seleccionar</label>
+      </div>
+</div>
+        
+        <div class="producto">
+            <img src="imagenes/banana-split.jpg" alt="banana-split " width="420" height="381">
+            <p>BANANA SPLIT - $3.00</p>
+            <input type="radio" id="producto3" name="producto" value="fresa">
+            <label for="producto3">Seleccionar</label>
+</div>
+		 <div class="producto">
+            <img src="imagenes/crepes.jpg" alt="CREPES " width="420" height="381">
+            <p>BATIDO DE PIÑA- $1.50</p>
+            <input type="radio" id="producto3" name="producto" value="fresa">
+            <label for="producto3">Seleccionar</label>
+</div>
+		 <div class="producto">
+            <img src="imagenes/helado de mora.jpg" alt="helado de mora  " width="420" height="381">
+            <p>HELADO DE MORA - $1.00</p>
+            <input type="radio" id="producto3" name="producto" value="fresa">
+            <label for="producto3">Seleccionar</label>
+</div>
+    </div>
+	
+
+    <div class="formulario">
+        <h2>Datos de Env&iacute;o</h2>
+        <form action="procesar_pedido.php" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="telefono">Tel&eacute;fono:</label>
+            <input type="tel" id="telefono" name="telefono" required><br>
+
+            <label for="direccion">Direcci&oacute;n de Env&iacute;o:</label>
+            <textarea id="direccion" name="direccion" required></textarea><br>
+
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" required><br>
+	  </form>
+			<script>
+$(document).ready(function(){
+    $('form').on('submit', function(e){
+        e.preventDefault(); // Prevenir el env�o del formulario normal
+        
+        // Obtener los datos del formulario
+        var formData = $(this).serialize();
+        
+        // Enviar la petici�n AJAX
+        $.ajax({
+            type: 'POST',
+            url: 'procesar_pedido.php',
+            data: formData,
+            success: function(response) {
+                alert('Pedido enviado con �xito.'); // Mostrar un mensaje de �xito
+                // Puedes redirigir a una p�gina de confirmaci�n aqu� si lo deseas
+            },
+            error: function(xhr, status, error) {
+                alert('Error al enviar el pedido: ' + error); // Mostrar un mensaje de error
+            }
+        });
+    });
+});
+</script>
+
+			<form>
+          <input type="submit" value="Enviar Pedido">
+        </form>
+</div>
+</body>
+</html>
+
+
